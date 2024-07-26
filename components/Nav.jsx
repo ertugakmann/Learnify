@@ -10,6 +10,7 @@ import { SlBasket } from "react-icons/sl";
 import MyCourseDropdownItem from "./Dropdowns/MyCourseDropDown";
 import FavoritesDropdown from "./Dropdowns/FavoritesDropDown";
 import Avatar from "../public/assets/avatar.png";
+import BasketDropdown from "./Dropdowns/BasketDropdown";
 
 const Nav = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
@@ -18,6 +19,7 @@ const Nav = () => {
   // * Dropdown States
   const [myCourseDropdown, setMyCourseDropdown] = useState(false);
   const [favoritesDropdown, setFavoritesDropdown] = useState(false);
+  const [basketDropdown, setBasketDropdown] = useState(false);
 
   return (
     <nav className="flex justify-between w-full pt-3 items-center">
@@ -34,7 +36,7 @@ const Nav = () => {
         </Link>
       </div>
 
-      <div>
+      <div className="flex flex-1 mx-12">
         <form className="relative w-full">
           <input
             type="text"
@@ -50,14 +52,14 @@ const Nav = () => {
         {isUserLoggedIn ? (
           <div className="flex items-center gap-5">
             <Link
-              href="/"
+              href="/my-course"
               className="font-semibold text-base cursor-pointer flex items-center gap-5"
               onMouseEnter={() => setMyCourseDropdown(!myCourseDropdown)}
               onMouseLeave={() => setMyCourseDropdown(!myCourseDropdown)}
             >
               My Courses{" "}
             </Link>
-            <Link href="/">
+            <Link href="/favorites">
               <CiHeart
                 onMouseEnter={() => setFavoritesDropdown(!favoritesDropdown)}
                 onMouseLeave={() => setFavoritesDropdown(!favoritesDropdown)}
@@ -65,10 +67,14 @@ const Nav = () => {
               />
             </Link>
             {/* TODO: Add Dropdowns to those icons. */}
-            <Link href="/">
-              <SlBasket size={"22px"} />
+            <Link href="/basket">
+              <SlBasket
+                size={"22px"}
+                onMouseEnter={() => setBasketDropdown(!basketDropdown)}
+                onMouseLeave={() => setBasketDropdown(!basketDropdown)}
+              />
             </Link>
-            <Link href="/">
+            <Link href="/profile">
               <Image
                 src={Avatar}
                 width={35}
@@ -92,6 +98,13 @@ const Nav = () => {
                 <FavoritesDropdown />
                 <FavoritesDropdown />
                 <FavoritesDropdown />
+              </div>
+            )}
+
+            {/* * Basket Dropdown */}
+            {basketDropdown && (
+              <div className="dropdown">
+                <BasketDropdown />
               </div>
             )}
           </div>
