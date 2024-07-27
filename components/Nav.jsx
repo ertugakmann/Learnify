@@ -13,7 +13,7 @@ import Avatar from "../public/assets/avatar.png";
 import BasketDropdown from "./Dropdowns/BasketDropdown";
 
 const Nav = () => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   // * Dropdown States
@@ -23,18 +23,11 @@ const Nav = () => {
 
   return (
     <nav className="flex justify-between w-full pt-3 items-center">
-      <div>
-        <Link href="/" className="flex items-center">
-          {/* TODO: Check that logo again to add a new circle on to the background. */}
-          <Image
-            src={Logo}
-            width={120}
-            height={120}
-            className="object-contain"
-          />
-          <p className="text-2xl font-bold">Learnify</p>
-        </Link>
-      </div>
+      <Link href="/" className="flex items-center">
+        {/* TODO: Check that logo again to add a new circle on to the background. */}
+        <Image src={Logo} width={120} height={120} className="object-contain" />
+        <p className="text-2xl font-bold">Learnify</p>
+      </Link>
 
       <div className="flex flex-1 mx-12">
         <form className="relative w-full">
@@ -57,7 +50,7 @@ const Nav = () => {
               onMouseEnter={() => setMyCourseDropdown(!myCourseDropdown)}
               onMouseLeave={() => setMyCourseDropdown(!myCourseDropdown)}
             >
-              My Courses{" "}
+              My Courses
             </Link>
             <Link href="/favorites">
               <CiHeart
@@ -110,7 +103,18 @@ const Nav = () => {
           </div>
         ) : (
           // TODO: Login and Register Buttons
-          <div>sdfsdasadf</div>
+          <div className="flex gap-3">
+            <Link href="/login">
+              <button type="button" className="black_btn">
+                Login
+              </button>
+            </Link>
+            <Link href="/sign-in">
+              <button type="button" className="black_btn">
+                Sign in
+              </button>
+            </Link>
+          </div>
         )}
       </div>
     </nav>
