@@ -105,8 +105,8 @@ const Nav = () => {
           // TODO: Login and Register Buttons
           <div className="flex gap-3">
             <Link href="/login">
-              <button type="button" className="black_btn">
-                Login
+              <button type="button" className="outline_btn">
+                Log in
               </button>
             </Link>
             <Link href="/sign-in">
