@@ -13,7 +13,7 @@ import Avatar from "../public/assets/avatar.png";
 import BasketDropdown from "./Dropdowns/BasketDropdown";
 
 const Nav = () => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
   const [inputValue, setInputValue] = useState("");
 
   // * Dropdown States
@@ -23,13 +23,19 @@ const Nav = () => {
 
   return (
     <nav className="flex justify-between w-full pt-3 items-center">
-      <Link href="/" className="flex items-center">
+      <Link href="/" className="flex items-center ">
         {/* TODO: Check that logo again to add a new circle on to the background. */}
-        <Image src={Logo} width={120} height={120} className="object-contain" />
-        <p className="text-2xl font-bold">Learnify</p>
+        <Image
+          alt="logo"
+          src={Logo}
+          width={120}
+          height={120}
+          className="object-contain"
+        />
+        <p className="text-2xl font-bold lg:flex hidden">Learnify</p>
       </Link>
 
-      <div className="flex flex-1 mx-12">
+      <div className="md:flex md:flex-1 hidden mx-12 w-full">
         <form className="relative w-full">
           <input
             type="text"
@@ -78,7 +84,7 @@ const Nav = () => {
             </Link>
             {/* * My Course Dropdown */}
             {myCourseDropdown && (
-              <div className="dropdown">
+              <div className="dropdown z-10">
                 <MyCourseDropdownItem />
                 <MyCourseDropdownItem />
                 <MyCourseDropdownItem />
@@ -87,7 +93,7 @@ const Nav = () => {
 
             {/* * Favorites Dropdown */}
             {favoritesDropdown && (
-              <div className="dropdown">
+              <div className="dropdown z-10">
                 <FavoritesDropdown />
                 <FavoritesDropdown />
                 <FavoritesDropdown />
@@ -96,14 +102,14 @@ const Nav = () => {
 
             {/* * Basket Dropdown */}
             {basketDropdown && (
-              <div className="dropdown">
+              <div className="dropdown z-10">
                 <BasketDropdown />
               </div>
             )}
           </div>
         ) : (
           // TODO: Login and Register Buttons
-          <div className="flex gap-3">
+          <div className="gap-3 flex">
             <Link href="/login">
               <button type="button" className="outline_btn">
                 Log in

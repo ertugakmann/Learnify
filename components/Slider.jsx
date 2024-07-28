@@ -23,12 +23,12 @@ const Slider = () => {
           delay: 3500,
           disableOnInteraction: false,
         }}
-        className="w-full "
+        className="w-full"
       >
         <SwiperSlide>
           <div className="bg-gradient-to-r from-gray-700 to-slate-800 h-[350px] flex justify-between">
-            <div className="flex flex-col ml-24 mt-16">
-              <p className="slider_text text-white">Start Your </p>
+            <div className="flex flex-col ml-12 mt-4 lg:ml-24 lg:mt-16">
+              <p className="slider_text  text-white">Start Your </p>
               <p className="slider_text  text-white mt-2">Learning Journey</p>
               <p className="slider_desc">
                 Join thousands of learners and start your path to success.
@@ -42,14 +42,15 @@ const Slider = () => {
                 width={400}
                 height={400}
                 src={RichContent}
-                className="object-contain"
+                className="object-contain hidden md:flex"
+                alt="Slider Image"
               />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="bg-gradient-to-r from-gray-700 to-slate-800 h-[350px] flex justify-between">
-            <div className="flex flex-col ml-24 mt-16">
+            <div className="flex flex-col ml-12 mt-8 md:ml-24 md:mt-16">
               <p className="slider_text text-white">Learn from </p>
               <p className="slider_text  text-white mt-2">Industry Experts</p>
               <p className="slider_desc">
@@ -64,7 +65,8 @@ const Slider = () => {
                 width={400}
                 height={400}
                 src={Experts}
-                className="object-contain"
+                className="object-contain hidden md:flex"
+                alt="Slider Image"
               />
             </div>
           </div>
@@ -72,7 +74,7 @@ const Slider = () => {
 
         <SwiperSlide>
           <div className="bg-gradient-to-r from-gray-700 to-slate-800 h-[350px] flex justify-between">
-            <div className="flex flex-col ml-24 mt-16">
+            <div className="flex flex-col ml-12 mt-8 md:ml-24 md:mt-16">
               <p className="slider_text text-white">Learn Anytime, </p>
               <p className="slider_text  text-white mt-2">Anywhere</p>
               <p className="slider_desc">
@@ -87,18 +89,20 @@ const Slider = () => {
                 width={400}
                 height={400}
                 src={WorkFromAnyWhere}
-                className="object-contain"
+                className="object-contain hidden md:flex"
+                alt="Slider Image"
               />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="bg-gradient-to-r from-gray-700 to-slate-800 h-[350px] flex justify-between">
-            <div className="flex flex-col ml-24 mt-16">
+            <div className="flex flex-col ml-12 mt-8 md:ml-24 md:mt-16">
               <p className="slider_text text-white">Transform</p>
               <p className="slider_text  text-white mt-2">Your Career</p>
               <p className="slider_desc">
-                Flexible learning options to fit your schedule.
+                Take your professional life to the next level with our targeted
+                courses and career advancement tools.
               </p>
               <button type="button" className="blue_btn w-[110px] mt-4">
                 Start Now
@@ -109,7 +113,8 @@ const Slider = () => {
                 width={400}
                 height={400}
                 src={Career}
-                className="object-contain"
+                className="object-contain hidden md:flex"
+                alt="Slider Image"
               />
             </div>
           </div>

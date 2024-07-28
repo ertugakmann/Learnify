@@ -18,6 +18,7 @@ const BasketDropdown = () => {
             width={70}
             height={60}
             className="object-cover"
+            alt="Course Image"
           />
           <p className="text-sm font-semibold w-[300px] z-10">
             React 18 - React Component - React State - React Hooks - React

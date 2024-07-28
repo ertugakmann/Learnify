@@ -10,6 +10,7 @@ const DropdownCourse = () => {
           width={70}
           height={60}
           className="object-cover"
+          alt="Course Image"
         />
         <p className="text-sm font-semibold w-[300px] z-10">
           C# Veri Yapıları : Linked List | Doubly Linked List | Queue | Stack |

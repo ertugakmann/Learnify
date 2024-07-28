@@ -30,7 +30,6 @@
 
 .main:after {
   content: "";
-  background-image: url("/assets/images/grid.svg");
   z-index: 1;
   position: absolute;
   width: 100%;
@@ -94,7 +93,7 @@
 }
 
 .slider_text {
-  @apply text-5xl font-extrabold sm:text-6xl;
+  @apply text-5xl font-extrabold sm:text-5xl;
 }
 
 .slider_desc {

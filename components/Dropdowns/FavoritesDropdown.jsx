@@ -3,13 +3,14 @@ import Image from "next/image";
 
 const FavoritesDropdown = () => {
   return (
-    <div className="flex flex-col">
-      <div className="w-full flex items-center gap-5">
+    <div className="flex flex-col z-20">
+      <div className="w-full flex items-center gap-5 z-20">
         <Image
           src="/assets/course-images/courseimage2.jpg"
           width={70}
           height={60}
           className="object-cover"
+          alt="Course Image"
         />
         <p className="text-sm font-semibold w-[300px] z-10">
           React 18 - React Component - React State - React Hooks - React Router
