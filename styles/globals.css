@@ -93,7 +93,7 @@
 }
 
 .slider_text {
-  @apply text-5xl font-extrabold sm:text-5xl;
+  @apply text-4xl font-extrabold sm:text-5xl;
 }
 
 .slider_desc {
