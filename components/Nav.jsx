@@ -50,14 +50,6 @@ const Nav = () => {
       <div className="flex relative">
         {isUserLoggedIn ? (
           <div className="flex items-center gap-5">
-            <Link
-              href="/my-course"
-              className="font-semibold text-base cursor-pointer flex items-center gap-5"
-              onMouseEnter={() => setMyCourseDropdown(!myCourseDropdown)}
-              onMouseLeave={() => setMyCourseDropdown(!myCourseDropdown)}
-            >
-              My Courses
-            </Link>
             <Link href="/favorites">
               <CiHeart
                 onMouseEnter={() => setFavoritesDropdown(!favoritesDropdown)}
@@ -76,20 +68,13 @@ const Nav = () => {
             <Link href="/profile">
               <Image
                 src={Avatar}
-                width={35}
-                height={35}
+                width={43}
+                height={43}
                 className="rounded-full"
                 alt="Profile Image"
               />
             </Link>
             {/* * My Course Dropdown */}
-            {myCourseDropdown && (
-              <div className="dropdown z-10">
-                <MyCourseDropdownItem />
-                <MyCourseDropdownItem />
-                <MyCourseDropdownItem />
-              </div>
-            )}
 
             {/* * Favorites Dropdown */}
             {favoritesDropdown && (

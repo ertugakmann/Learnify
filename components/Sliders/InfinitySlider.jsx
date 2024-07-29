@@ -39,10 +39,10 @@ const InfinitySlider = () => {
           }}
           breakpoints={{
             0: {
-              spaceBetween: 30,
+              spaceBetween: 80,
             },
             480: {
-              spaceBetween: 30,
+              spaceBetween: 80,
             },
             767: {
               spaceBetween: 40,
@@ -51,7 +51,7 @@ const InfinitySlider = () => {
               spaceBetween: 40,
             },
           }}
-          className="trusted-by-list"
+          className="trusted-by-list w-full"
           style={{ marginTop: "10px" }}
         >
           <SwiperSlide style={{ width: "20%" }}>
@@ -109,10 +109,10 @@ const InfinitySlider = () => {
           }}
           breakpoints={{
             0: {
-              spaceBetween: 30,
+              spaceBetween: 80,
             },
             480: {
-              spaceBetween: 30,
+              spaceBetween: 80,
             },
             767: {
               spaceBetween: 40,
