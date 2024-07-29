@@ -9,16 +9,14 @@ import Image from "next/image";
 import Avatar from "@public/assets/avatar.png";
 
 const Feed = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
 
   return (
     <div className="flex flex-col w-full">
       {isLogged ? (
         <div className="mt-1 mb-5 flex gap-5">
           <Image
-            height={30}
-            width={70}
-            className="rounded-full"
+            className="rounded-full h-[70px] w-[70px]"
             src={Avatar}
           ></Image>
           <div className="flex flex-col ">
