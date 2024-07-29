@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
-import SliderCard from "./SliderCards/SliderCard";
+import PopularCourseSlider from "./SliderCards/PopularSliderCard";
 
 const PopularCourseSliders = () => {
   return (
@@ -43,31 +43,31 @@ const PopularCourseSliders = () => {
         className="mySwiper w-full"
       >
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
         <SwiperSlide>
-          <SliderCard />
+          <PopularCourseSlider />
         </SwiperSlide>
       </Swiper>
     </div>

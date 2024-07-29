@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 // * Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
-import { useEffect, useState } from "react";
 
 // * Illustrations for slider
 import RichContent from "@public/assets/illustrations/slider1.svg";
