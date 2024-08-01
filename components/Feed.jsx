@@ -16,22 +16,11 @@ const Feed = () => {
     <div className="flex flex-col w-full">
       {session?.user ? (
         <div className="mt-1 mb-5 flex gap-5">
-          <Image
-            className="rounded-full h-[70px] w-[70px]"
-            src={Avatar}
-          ></Image>
           <div className="flex flex-col ">
             <p className="font-semibold text-4xl text-gray-800">
-              Welcome Back, User
+              Welcome Back, {session.user.name}
             </p>
             <p className="font-satoshi text-md text-gray-400">Web Developer</p>
-            <button
-              type="button"
-              onClick={() => signOut()}
-              className="outline_btn"
-            >
-              Sign out
-            </button>
           </div>
         </div>
       ) : (

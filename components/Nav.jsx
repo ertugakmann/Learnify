@@ -5,13 +5,16 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../public/assets/nlogo.png";
-import { CiHeart } from "react-icons/ci";
-import { SlBasket } from "react-icons/sl";
 import MyCourseDropdownItem from "./Dropdowns/MyCourseDropDown";
 import FavoritesDropdown from "./Dropdowns/FavoritesDropDown";
-import Avatar from "../public/assets/avatar.png";
 import BasketDropdown from "./Dropdowns/BasketDropdown";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import ProfileDropdown from "@components/Dropdowns/ProfileDropdown";
+
+// * Images and Icons
+import { CiHeart } from "react-icons/ci";
+import { SlBasket } from "react-icons/sl";
+import Avatar from "../public/assets/avatar.png";
 
 const Nav = () => {
   const [inputValue, setInputValue] = useState("");
@@ -22,6 +25,7 @@ const Nav = () => {
   const [myCourseDropdown, setMyCourseDropdown] = useState(false);
   const [favoritesDropdown, setFavoritesDropdown] = useState(false);
   const [basketDropdown, setBasketDropdown] = useState(false);
+  const [profileDropdown, setProfileDropdown] = useState(false);
 
   return (
     <nav className="flex justify-between w-full pt-3 items-center">
@@ -52,11 +56,19 @@ const Nav = () => {
       <div className="flex relative">
         {session?.user ? (
           <div className="flex items-center gap-5">
+            <button
+              type="button"
+              onClick={() => signOut()}
+              className="md:flex hidden rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center"
+            >
+              Sign out
+            </button>
             <Link href="/favorites">
               <CiHeart
                 onMouseEnter={() => setFavoritesDropdown(!favoritesDropdown)}
                 onMouseLeave={() => setFavoritesDropdown(!favoritesDropdown)}
                 size={"26px"}
+                className="md:flex hidden"
               />
             </Link>
             {/* TODO: Add Dropdowns to those icons. */}
@@ -65,17 +77,31 @@ const Nav = () => {
                 size={"22px"}
                 onMouseEnter={() => setBasketDropdown(!basketDropdown)}
                 onMouseLeave={() => setBasketDropdown(!basketDropdown)}
+                className="md:flex hidden"
               />
             </Link>
+            {/* Desktop Navigation */}
             <Link href="/profile">
               <Image
-                src={Avatar}
+                src={session?.user.image || Avatar}
                 width={43}
                 height={43}
-                className="rounded-full"
+                className="rounded-full md:flex hidden"
                 alt="Profile Image"
               />
             </Link>
+
+            {/* Mobile Navigation */}
+
+            <Image
+              src={Avatar}
+              width={43}
+              height={43}
+              className="rounded-full md:hidden flex"
+              alt="Profile Image"
+              onClick={() => setProfileDropdown(!profileDropdown)}
+            />
+
             {/* * My Course Dropdown */}
 
             {/* * Favorites Dropdown */}
@@ -91,6 +117,13 @@ const Nav = () => {
             {basketDropdown && (
               <div className="dropdown z-10">
                 <BasketDropdown />
+              </div>
+            )}
+
+            {/* * Profile Dropdown */}
+            {profileDropdown && (
+              <div className="dropdown z-10">
+                <ProfileDropdown />
               </div>
             )}
           </div>
