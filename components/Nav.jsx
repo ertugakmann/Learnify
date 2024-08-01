@@ -11,10 +11,12 @@ import MyCourseDropdownItem from "./Dropdowns/MyCourseDropDown";
 import FavoritesDropdown from "./Dropdowns/FavoritesDropDown";
 import Avatar from "../public/assets/avatar.png";
 import BasketDropdown from "./Dropdowns/BasketDropdown";
+import { signIn, useSession } from "next-auth/react";
 
 const Nav = () => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
   const [inputValue, setInputValue] = useState("");
+
+  const { data: session } = useSession();
 
   // * Dropdown States
   const [myCourseDropdown, setMyCourseDropdown] = useState(false);
@@ -48,7 +50,7 @@ const Nav = () => {
         </form>
       </div>
       <div className="flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex items-center gap-5">
             <Link href="/favorites">
               <CiHeart
@@ -95,16 +97,13 @@ const Nav = () => {
         ) : (
           // TODO: Login and Register Buttons
           <div className="gap-3 flex">
-            <Link href="/login">
-              <button type="button" className="outline_btn">
-                Log in
-              </button>
-            </Link>
-            <Link href="/sign-in">
-              <button type="button" className="black_btn">
-                Sign in
-              </button>
-            </Link>
+            <button
+              type="button"
+              onClick={() => signIn("google")}
+              className="black_btn"
+            >
+              Sign in
+            </button>
           </div>
         )}
       </div>

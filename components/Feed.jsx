@@ -7,13 +7,14 @@ import InfinitySlider from "./Sliders/InfinitySlider";
 import PopularCourseSliders from "./Sliders/PopularCourseSliders";
 import Image from "next/image";
 import Avatar from "@public/assets/avatar.png";
+import { signOut, useSession } from "next-auth/react";
 
 const Feed = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const { data: session } = useSession();
 
   return (
     <div className="flex flex-col w-full">
-      {isLogged ? (
+      {session?.user ? (
         <div className="mt-1 mb-5 flex gap-5">
           <Image
             className="rounded-full h-[70px] w-[70px]"
@@ -24,6 +25,13 @@ const Feed = () => {
               Welcome Back, User
             </p>
             <p className="font-satoshi text-md text-gray-400">Web Developer</p>
+            <button
+              type="button"
+              onClick={() => signOut()}
+              className="outline_btn"
+            >
+              Sign out
+            </button>
           </div>
         </div>
       ) : (
