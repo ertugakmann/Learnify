@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.4.2",
-    "firebase": "^10.12.4",
+    "firebase": "^10.12.5",
     "firebase-admin": "^11.11.1",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
