@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com"],
+    domains: ["firebasestorage.googleapis.com"],
   },
   webpack(config) {
     // Webpack ayarlarını güncelle

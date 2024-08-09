@@ -9,17 +9,30 @@ import { auth } from "@lib/firebase";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "@firebase/storage";
 
 const Register = () => {
   const route = useRouter();
 
+  const [file, setFile] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [tag, setTag] = useState("");
 
   const checkInputValues = () => {
-    if (email === "" || password === "" || username === "" || tag === "") {
+    if (
+      email === "" ||
+      password === "" ||
+      username === "" ||
+      tag === "" ||
+      file === null
+    ) {
       toast.error("Please fill all the fields");
     } else {
       toast.info("Processing...");
@@ -27,26 +40,46 @@ const Register = () => {
     }
   };
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   const handleSignIn = async () => {
     try {
+      // * Firebase Auth
       const db = getFirestore();
+      const storage = getStorage();
+
+      // * Create User
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
       const user = response.user;
-      await setDoc(doc(db, "users", user.uid), {
-        username: username,
-        email: email,
-        tag: tag,
-      });
+
       if (user) {
+        // * Upload Image
+        const storageRef = ref(storage, `profile_images/${user.uid}`);
+        await uploadBytes(storageRef, file);
+        const photoURL = await getDownloadURL(storageRef);
+
+        await setDoc(
+          doc(db, "users", user.uid),
+          {
+            username: username,
+            email: email,
+            tag: tag,
+            photoURL: photoURL,
+          },
+          { merge: true }
+        );
+
         toast.success("User has been created successfully ✅");
         console.log(user);
         setEmail("");
         setPassword("");
-        route.push("/login");
+        route.push("/");
       }
     } catch (error) {
       toast.error(error.message);
@@ -199,6 +232,14 @@ const Register = () => {
                     ></path>
                   </svg>
                 </div>
+              </div>
+
+              <div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
               </div>
 
               <div className="!mt-8">

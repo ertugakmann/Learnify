@@ -17,17 +17,21 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 
 // * Firebase Auth
 
-import { auth } from "@lib/firebase";
+import { auth, db } from "@lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const Nav = () => {
   const [inputValue, setInputValue] = useState("");
-  const [user, setUser] = useState(null);
+  const [userSession, setUserSession] = useState(null);
   const [isLogged, setIsLogged] = useState(false);
-  // * USER SESSION
 
+  // * USER SESSION
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        // TODO: CHECK FOR BETTER WAY HOLD USER DATA
+        setUserSession(userDoc.data());
         setIsLogged(true);
       } else {
         setIsLogged(false);
@@ -35,6 +39,7 @@ const Nav = () => {
     });
   });
 
+  // * Log Out
   const logOut = async () => {
     signOut(auth);
   };
@@ -100,22 +105,18 @@ const Nav = () => {
             </Link>
             {/* Desktop Navigation */}
             <Link href="/profile">
-              <Image
-                src={Avatar}
-                width={43}
-                height={43}
-                className="rounded-full md:flex hidden"
+              <img
+                src={userSession?.photoURL || Avatar}
+                className="rounded-full md:flex hidden w-14 h-14"
                 alt="Profile Image"
               />
             </Link>
 
             {/* Mobile Navigation */}
 
-            <Image
-              src={Avatar}
-              width={43}
-              height={43}
-              className="rounded-full md:hidden flex"
+            <img
+              src={userSession?.photoURL || Avatar}
+              className="rounded-full md:hidden flex w-14 h-14"
               alt="Profile Image"
               onClick={() => setProfileDropdown(!profileDropdown)}
             />

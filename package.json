@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.4.2",
+    "@firebase/storage": "^0.12.6",
     "firebase": "^10.12.5",
     "firebase-admin": "^11.11.1",
     "firestore": "^1.1.6",
