@@ -13,7 +13,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@lib/firebase";
 
 const Feed = () => {
-  const [user, setUser] = useState(null);
+  const [userSession, setUserSession] = useState(null);
   const [isLogged, setIsLogged] = useState(false);
 
   // * USER SESSION
@@ -23,7 +23,7 @@ const Feed = () => {
       if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         // TODO: CHECK FOR BETTER WAY HOLD USER DATA
-        setUser(userDoc.data());
+        setUserSession(userDoc.data());
         setIsLogged(true);
       } else {
         setIsLogged(false);
@@ -37,9 +37,11 @@ const Feed = () => {
         <div className="mt-1 mb-5 flex gap-5">
           <div className="flex flex-col ">
             <p className="font-semibold text-4xl text-gray-800">
-              Welcome Back, {user.username}
+              Welcome Back, {userSession?.username || "User"}
             </p>
-            <p className="font-satoshi text-md text-gray-400">{user.tag}</p>
+            <p className="font-satoshi text-md text-gray-400">
+              {userSession?.tag}
+            </p>
           </div>
         </div>
       ) : (

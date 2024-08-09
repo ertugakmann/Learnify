@@ -54,22 +54,24 @@ const Register = () => {
   };
 
   return (
-    <div class="font-[sans-serif] w-full">
-      <div class="min-h-screen flex flex-col items-center justify-center">
-        <div class="max-w-md w-full">
-          <div class="p-8 rounded-2xl bg-white shadow">
-            <h2 class="text-gray-800 text-center text-2xl font-bold">
+    <div className="font-[sans-serif] w-full">
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="max-w-md w-full">
+          <div className="p-8 rounded-2xl bg-white shadow">
+            <h2 className="text-gray-800 text-center text-2xl font-bold">
               Register
             </h2>
-            <form class="mt-8 space-y-4">
+            <form className="mt-8 space-y-4">
               <div>
-                <label class="text-gray-800 text-sm mb-2 block">Username</label>
-                <div class="relative flex items-center">
+                <label className="text-gray-800 text-sm mb-2 block">
+                  Username
+                </label>
+                <div className="relative flex items-center">
                   <input
                     name="username"
                     type="username"
                     required
-                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                    className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                     placeholder="Enter user name"
                     onChange={(e) => setUsername(e.target.value)}
                     value={username}
@@ -78,7 +80,7 @@ const Register = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
-                    class="w-4 h-4 absolute right-4"
+                    className="w-4 h-4 absolute right-4"
                     viewBox="0 0 24 24"
                   >
                     <circle
@@ -96,13 +98,15 @@ const Register = () => {
               </div>
 
               <div>
-                <label class="text-gray-800 text-sm mb-2 block">Email</label>
-                <div class="relative flex items-center">
+                <label className="text-gray-800 text-sm mb-2 block">
+                  Email
+                </label>
+                <div className="relative flex items-center">
                   <input
                     name="username"
                     type="text"
                     required
-                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                    className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                     placeholder="Enter your email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
@@ -111,7 +115,7 @@ const Register = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
-                    class="w-4 h-4 absolute right-4"
+                    className="w-4 h-4 absolute right-4"
                     viewBox="0 0 24 24"
                   >
                     <circle
@@ -129,13 +133,15 @@ const Register = () => {
               </div>
 
               <div>
-                <label class="text-gray-800 text-sm mb-2 block">Password</label>
-                <div class="relative flex items-center">
+                <label className="text-gray-800 text-sm mb-2 block">
+                  Password
+                </label>
+                <div className="relative flex items-center">
                   <input
                     name="password"
                     type="password"
                     required
-                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                    className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                     placeholder="Enter password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
@@ -144,7 +150,7 @@ const Register = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
-                    class="w-4 h-4 absolute right-4 cursor-pointer"
+                    className="w-4 h-4 absolute right-4 cursor-pointer"
                     viewBox="0 0 128 128"
                   >
                     <path
@@ -157,19 +163,19 @@ const Register = () => {
 
               <div>
                 <div className="flex">
-                  <label class="text-gray-800 text-sm mb-2 block">
+                  <label className="text-gray-800 text-sm mb-2 block">
                     Who are You ?
                   </label>
                   <label className="text-gray-500 text-sm ml-2">
                     (e.g. Web Developer)
                   </label>
                 </div>
-                <div class="relative flex items-center">
+                <div className="relative flex items-center">
                   <input
                     name="username"
                     type="text"
                     required
-                    class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
+                    className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                     placeholder="Enter an your profession"
                     onChange={(e) => setTag(e.target.value)}
                     value={tag}
@@ -178,7 +184,7 @@ const Register = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
-                    class="w-4 h-4 absolute right-4"
+                    className="w-4 h-4 absolute right-4"
                     viewBox="0 0 24 24"
                   >
                     <circle
@@ -195,20 +201,20 @@ const Register = () => {
                 </div>
               </div>
 
-              <div class="!mt-8">
+              <div className="!mt-8">
                 <button
                   onClick={checkInputValues}
                   type="button"
-                  class="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-[#001628] hover:bg-[#000b28] focus:outline-none"
+                  className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-[#001628] hover:bg-[#000b28] focus:outline-none"
                 >
                   Sign in
                 </button>
               </div>
-              <p class="text-gray-800 text-sm !mt-8 text-center">
+              <p className="text-gray-800 text-sm !mt-8 text-center">
                 Do you have an account ?
                 <Link
                   href="/login"
-                  class="text-[#000f28] hover:underline ml-1 whitespace-nowrap font-semibold"
+                  className="text-[#000f28] hover:underline ml-1 whitespace-nowrap font-semibold"
                 >
                   Log in here
                 </Link>
