@@ -1,25 +1,43 @@
 "use client";
 
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../public/assets/nlogo.png";
 import MyCourseDropdownItem from "./Dropdowns/MyCourseDropDown";
 import FavoritesDropdown from "./Dropdowns/FavoritesDropDown";
 import BasketDropdown from "./Dropdowns/BasketDropdown";
-import { signIn, signOut, useSession } from "next-auth/react";
 import ProfileDropdown from "@components/Dropdowns/ProfileDropdown";
 
 // * Images and Icons
 import { CiHeart } from "react-icons/ci";
 import { SlBasket } from "react-icons/sl";
 import Avatar from "../public/assets/avatar.png";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
+// * Firebase Auth
+
+import { auth } from "@lib/firebase";
 
 const Nav = () => {
   const [inputValue, setInputValue] = useState("");
+  const [user, setUser] = useState(null);
+  const [isLogged, setIsLogged] = useState(false);
+  // * USER SESSION
 
-  const { data: session } = useSession();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogged(true);
+      } else {
+        setIsLogged(false);
+      }
+    });
+  });
+
+  const logOut = async () => {
+    signOut(auth);
+  };
 
   // * Dropdown States
   const [myCourseDropdown, setMyCourseDropdown] = useState(false);
@@ -54,11 +72,11 @@ const Nav = () => {
         </form>
       </div>
       <div className="flex relative">
-        {session?.user ? (
+        {isLogged ? (
           <div className="flex items-center gap-5">
             <button
               type="button"
-              onClick={() => signOut()}
+              onClick={() => logOut()}
               className="md:flex hidden rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center"
             >
               Sign out
@@ -83,7 +101,7 @@ const Nav = () => {
             {/* Desktop Navigation */}
             <Link href="/profile">
               <Image
-                src={session?.user.image || Avatar}
+                src={Avatar}
                 width={43}
                 height={43}
                 className="rounded-full md:flex hidden"
@@ -129,15 +147,11 @@ const Nav = () => {
           </div>
         ) : (
           // TODO: Login and Register Buttons
-          <div className="gap-3 flex">
-            <button
-              type="button"
-              onClick={() => signIn("google")}
-              className="black_btn"
-            >
+          <Link href="/login" className="gap-3 flex">
+            <button type="button" className="black_btn">
               Sign in
             </button>
-          </div>
+          </Link>
         )}
       </div>
     </nav>

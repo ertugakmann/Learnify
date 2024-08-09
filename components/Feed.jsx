@@ -1,26 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/globals.css";
 import HeroSlider from "./Sliders/HeroSlider";
 import InfinitySlider from "./Sliders/InfinitySlider";
 import PopularCourseSliders from "./Sliders/PopularCourseSliders";
 import Image from "next/image";
 import Avatar from "@public/assets/avatar.png";
-import { signOut, useSession } from "next-auth/react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@lib/firebase";
 
 const Feed = () => {
-  const { data: session } = useSession();
+  const [user, setUser] = useState(null);
+  const [isLogged, setIsLogged] = useState(false);
+
+  // * USER SESSION
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        // TODO: CHECK FOR BETTER WAY HOLD USER DATA
+        setUser(userDoc.data());
+        setIsLogged(true);
+      } else {
+        setIsLogged(false);
+      }
+    });
+  }, []);
 
   return (
     <div className="flex flex-col w-full">
-      {session?.user ? (
+      {isLogged ? (
         <div className="mt-1 mb-5 flex gap-5">
           <div className="flex flex-col ">
             <p className="font-semibold text-4xl text-gray-800">
-              Welcome Back, {session.user.name}
+              Welcome Back, {user.username}
             </p>
-            <p className="font-satoshi text-md text-gray-400">Web Developer</p>
+            <p className="font-satoshi text-md text-gray-400">{user.tag}</p>
           </div>
         </div>
       ) : (
