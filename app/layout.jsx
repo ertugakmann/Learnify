@@ -1,9 +1,8 @@
 import Footer from "@components/Footer";
 import Nav from "../components/Nav";
 import "../styles/globals.css";
-import { getServerSession } from "next-auth";
-import { authoptions } from "./api/auth/[...nextauth]/route";
-import NextAuthProvider from "@/components/provider/NextAuthProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "Learnify",
@@ -11,22 +10,19 @@ export const metadata = {
 };
 
 const RootLayout = async ({ children }) => {
-  const session = await getServerSession(authoptions);
-
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider session={session}>
-          <div className="main">
-            <div className="gradient"></div>
-          </div>
+        <div className="main">
+          <div className="gradient"></div>
+        </div>
 
-          <main className="app">
-            <Nav />
-            {children}
-            <Footer />
-          </main>
-        </NextAuthProvider>
+        <main className="app">
+          <Nav />
+          {children}
+          <Footer />
+          <ToastContainer position="bottom-right" autoClose={2000} />
+        </main>
       </body>
     </html>
   );
