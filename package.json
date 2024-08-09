@@ -12,6 +12,7 @@
     "@auth/firebase-adapter": "^2.4.2",
     "firebase": "^10.12.5",
     "firebase-admin": "^11.11.1",
+    "firestore": "^1.1.6",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "react": "^18",
