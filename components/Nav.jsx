@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../public/assets/nlogo.png";
@@ -8,6 +9,7 @@ import MyCourseDropdownItem from "./Dropdowns/MyCourseDropDown";
 import FavoritesDropdown from "./Dropdowns/FavoritesDropDown";
 import BasketDropdown from "./Dropdowns/BasketDropdown";
 import ProfileDropdown from "@components/Dropdowns/ProfileDropdown";
+import useUserStore from "@store/userStore";
 
 // * Images and Icons
 import { CiHeart } from "react-icons/ci";
@@ -17,31 +19,40 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 
 // * Firebase Auth
 
-import { auth, db } from "@lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { auth } from "@lib/firebase";
 
 const Nav = () => {
   const [inputValue, setInputValue] = useState("");
-  const [userSession, setUserSession] = useState(null);
-  const [isLogged, setIsLogged] = useState(false);
+  const { userSession, isLogged, logout } = useUserStore();
 
-  // * USER SESSION
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        // TODO: CHECK FOR BETTER WAY HOLD USER DATA
-        setUserSession(userDoc.data());
-        setIsLogged(true);
-      } else {
-        setIsLogged(false);
-      }
-    });
-  });
+  // const [userSession, setUserSession] = useState(null);
+  // const [isLogged, setIsLogged] = useState(false);
+
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     // * Get the current user with uid from authentification.
+  //     const user = await getCurrentUser();
+
+  //     if (user) {
+  //       // * Fetch user data from the API with the user's uid.
+  //       const response = await fetch(`/api/user/${user.uid}`);
+  //       if (response.ok) {
+  //         const userData = await response.json();
+  //         setUserSession(userData);
+  //         setIsLogged(true);
+  //       } else {
+  //         setIsLogged(false);
+  //       }
+  //     }
+  //   };
+
+  //   fetchUserData();
+  // }, []);
 
   // * Log Out
   const logOut = async () => {
     signOut(auth);
+    logout();
   };
 
   // * Dropdown States
