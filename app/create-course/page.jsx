@@ -1,7 +1,11 @@
 "use client";
 
+import { addDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { db, storage } from "@lib/firebase";
+import { collection } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 
 function UploadCourseForm() {
     const [title, setTitle] = useState("");
@@ -9,12 +13,43 @@ function UploadCourseForm() {
     const [category, setCategory] = useState("");
     const [image, setImage] = useState(null);
 
-    const handleSubmit = (e) => {
+    // TODO: The datas should check if they are already exist in the database!!!!
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        toast.info("Uploading Course...");
 
         if (!title || !description || !category || !image) {
             toast.error("Please fill all the fields");
             return;
+        }
+
+        try {
+            // Post Course Method
+            const courseRef = await addDoc(collection(db, "courses"), {
+                title,
+                description,
+                category,
+                createdAt: new Date(),
+            });
+
+            // Upload Image to Firestore
+            const storageRef = ref(storage, `course_images/${courseRef.id}`);
+            await uploadBytes(storageRef, image);
+            const photoURL = await getDownloadURL(storageRef);
+
+            // Update Course with Image URL
+            await updateDoc(doc(db, "courses", courseRef.id), {
+                photoURL,
+            });
+
+            setTitle("");
+            setDescription("");
+            setCategory("");
+            setImage(null);
+            toast.success("Course has been uploaded successfully ✅");
+        } catch (error) {
+            toast.error(error.message);
         }
     };
 

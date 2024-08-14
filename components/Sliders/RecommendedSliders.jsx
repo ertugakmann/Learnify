@@ -7,21 +7,21 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Pagination } from "swiper/modules";
-import PopularCourseSliderCard from "./SliderCards/PopularSliderCard";
 import { toast } from "react-toastify";
+import RecommendedSliderCard from "./SliderCards/RecommendedSliderCard";
 
-const PopularCourseSliders = () => {
-    const [popularCoursesData, setPopularCoursesData] = useState([]);
+const RecommendedSliders = () => {
+    const [recommendedCoursesData, setRecommendedCoursesData] = useState([]);
 
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch("/api/courses/popular");
+                const response = await fetch("/api/courses/recommended");
                 if (!response.ok) {
                     throw new Error("Failed to fetch");
                 }
                 const data = await response.json();
-                setPopularCoursesData(data);
+                setRecommendedCoursesData(data);
             } catch (error) {
                 toast.error("Failed to fetch popular courses data");
             }
@@ -64,9 +64,9 @@ const PopularCourseSliders = () => {
                 modules={[Pagination, Autoplay]}
                 className="mySwiper w-full"
             >
-                {popularCoursesData.map((course) => (
+                {recommendedCoursesData.map((course) => (
                     <SwiperSlide key={course.id}>
-                        <PopularCourseSliderCard course={course} />
+                        <RecommendedSliderCard course={course} />
                     </SwiperSlide>
                 ))}
             </Swiper>
@@ -74,4 +74,4 @@ const PopularCourseSliders = () => {
     );
 };
 
-export default PopularCourseSliders;
+export default RecommendedSliders;

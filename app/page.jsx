@@ -9,33 +9,33 @@ import { useEffect } from "react";
 import getCurrentUser from "@utils/getCurrentUser";
 
 const Home = () => {
-  const { setUserSession } = useUserStore();
+    const { setUserSession } = useUserStore();
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      // * Get the current user with uid from authentification.
-      const user = await getCurrentUser();
+    useEffect(() => {
+        const fetchUserData = async () => {
+            // * Get the current user with uid from authentification.
+            const user = await getCurrentUser();
 
-      if (user) {
-        // * Fetch user data from the API with the user's uid.
-        const response = await fetch(`/api/user/${user.uid}`);
-        if (response.ok) {
-          const userData = await response.json();
-          setUserSession(userData);
-        }
-      }
-    };
+            if (user) {
+                // * Fetch user data from the API with the user's uid.
+                const response = await fetch(`/api/user/${user.uid}`);
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUserSession(userData);
+                }
+            }
+        };
 
-    fetchUserData();
-  }, []);
+        fetchUserData();
+    }, []);
 
-  return (
-    <section className="w-full flex-col">
-      <div className="mt-3 w-full">
-        <Feed />
-      </div>
-    </section>
-  );
+    return (
+        <section className="w-full flex-col">
+            <div className="mt-3 w-full">
+                <Feed />
+            </div>
+        </section>
+    );
 };
 
 export default Home;

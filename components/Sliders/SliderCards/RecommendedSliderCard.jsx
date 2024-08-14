@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-const PopularSliderCard = ({ course }) => {
+const RecommendedSliderCard = ({ course }) => {
     return (
         <div className="w-full  flex flex-col gap-y-1">
             <Link href={"/"}>
@@ -33,4 +33,4 @@ const PopularSliderCard = ({ course }) => {
     );
 };
 
-export default PopularSliderCard;
+export default RecommendedSliderCard;
