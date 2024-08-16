@@ -71,6 +71,10 @@ const Register = () => {
                 console.log(user.id);
                 setEmail("");
                 setPassword("");
+                setUsername("");
+                setTag("");
+                setFile(null);
+                route.push("/");
             }
         } catch (error) {
             toast.error(error.message);

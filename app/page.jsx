@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Feed from "../components/Feed";
 import "../styles/globals.css";
-import Image from "next/image";
 import useUserStore from "@store/userStore";
 import { useEffect } from "react";
 import getCurrentUser from "@utils/getCurrentUser";

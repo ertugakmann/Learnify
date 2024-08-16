@@ -5,9 +5,10 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 const PopularSliderCard = ({ course }) => {
+    console.log(course.id);
     return (
         <div className="w-full  flex flex-col gap-y-1">
-            <Link href={"/"}>
+            <Link href={`/course/${course.id}`}>
                 <Image
                     src={course.photoURL}
                     alt="slider image"
@@ -16,10 +17,11 @@ const PopularSliderCard = ({ course }) => {
                     className="w-full"
                 />
                 <p className="font-semibold text-md">{course.title}</p>
-                <p className="text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis w-64">
-                    {course.creator}
-                </p>
-
+                <Link href="/dynamic-profile">
+                    <p className="text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis w-64">
+                        {course.creator}
+                    </p>
+                </Link>
                 <div className="flex w-[6rem]">
                     <Rating readOnly value={course.rating} />
                 </div>

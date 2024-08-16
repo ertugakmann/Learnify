@@ -7,8 +7,12 @@ export async function GET(req) {
 
     try {
         const querySnapshot = await getDocs(q);
-        const popularCourses = querySnapshot.docs.map((doc) => doc.data());
-
+        const popularCourses = querySnapshot.docs.map((doc) => {
+            return {
+                id: doc.id,
+                ...doc.data(),
+            };
+        });
         return new Response(JSON.stringify(popularCourses), {
             status: 200,
             headers: { "Content-Type": "application/json" },
