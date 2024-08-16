@@ -5,7 +5,6 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 const PopularSliderCard = ({ course }) => {
-    console.log(course.id);
     return (
         <div className="w-full  flex flex-col gap-y-1">
             <Link href={`/course/${course.id}`}>

@@ -1,19 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 const CourseOverview = () => {
     const [course, setCourse] = useState(null);
+    const params = useParams();
+    const { id } = params;
+    console.log(id);
 
     // TODO: Check better way of getting query from url
     // ? This is a temporary solution
-    const pathName = window.location.pathname;
-    const query = pathName.split("/")[2];
 
     useEffect(() => {
         const fetchCourse = async () => {
             try {
-                const response = await fetch(`/api/courses/${query}`);
+                const response = await fetch(`/api/courses/${id}`);
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch on client side.");

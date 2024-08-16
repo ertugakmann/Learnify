@@ -126,7 +126,7 @@ const Nav = () => {
                         <Link href="/profile">
                             <img
                                 src={userSession?.photoURL || Avatar}
-                                className="rounded-full md:flex hidden w-14 h-14"
+                                className="rounded-full md:flex hidden w-14 h-14 object-cover"
                                 alt="Profile Image"
                             />
                         </Link>
