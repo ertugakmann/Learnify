@@ -16,7 +16,7 @@ const PopularSliderCard = ({ course }) => {
                     className="w-full"
                 />
                 <p className="font-semibold text-md">{course.title}</p>
-                <Link href="/dynamic-profile">
+                <Link href={`/profile/${course.creatorID}`}>
                     <p className="text-sm text-gray-400 overflow-hidden whitespace-nowrap text-ellipsis w-64">
                         {course.creator}
                     </p>
