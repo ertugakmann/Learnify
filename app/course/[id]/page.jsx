@@ -61,8 +61,8 @@ const CourseOverview = () => {
     return (
         <div className="w-full">
             {course ? (
-                <div className="w-full h-[350px] bg-slate-200 flex justify-between mt-8">
-                    <div className="container mx-auto p-4 w-[90%] ">
+                <div className="w-full h-[550px] bg-slate-200 flex justify-between mt-8 mb-5">
+                    <div className="container mx-auto p-4 mt-3 w-[90%] ">
                         <h1 className="text-2xl font-bold text-slate-900">
                             {course.title}
                         </h1>
@@ -85,7 +85,7 @@ const CourseOverview = () => {
                         <div className="relative inline-block">
                             <img
                                 src={course.photoURL}
-                                className="w-[31rem] pr-9 mt-4"
+                                className="w-[31rem] pr-9 mt-7"
                             />
                             <div className="absolute w-[348px] inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-black/50 pointer-events-none"></div>
                         </div>
