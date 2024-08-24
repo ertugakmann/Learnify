@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import "../styles/globals.css";
 import HeroSlider from "./Sliders/HeroSlider";
 import InfinitySlider from "./Sliders/InfinitySlider";
