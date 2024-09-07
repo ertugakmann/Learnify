@@ -28,10 +28,10 @@ const Profile = () => {
     }, []);
 
     return (
-        <div className="profile-container">
+        <div className="profile-container h-[100vh]">
             {userData ? (
-                <div className="md:flex md:flex-row flex-col">
-                    <div className="flex flex-col mt-4 items-center p-5 h-full shadow-md rounded-md">
+                <div className="flex mt-12">
+                    <div className="flex flex-col items-center p-5 h-full shadow-md rounded-md">
                         <img
                             src={userData.photoURL}
                             className="rounded-full w-28 h-28 mt-2 object-cover"
@@ -79,7 +79,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="w-full h-full pl-8 mt-3">
+                    <div className="w-full h-full pl-8 mt-3">
                         <h2 className="text-4xl font-semibold">
                             Liked Courses
                         </h2>
@@ -140,7 +140,7 @@ const Profile = () => {
                                 </Link>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             ) : (
                 <p>Loading...</p>
