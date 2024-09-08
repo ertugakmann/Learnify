@@ -13,7 +13,7 @@ import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 const Register = () => {
     const route = useRouter();
 
-    const [file, setFile] = useState(null);
+    // const [file, setFile] = useState(null);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -24,8 +24,8 @@ const Register = () => {
             email === "" ||
             password === "" ||
             username === "" ||
-            tag === "" ||
-            file === null
+            (tag === "") == null
+            // file === null
         ) {
             toast.error("Please fill all the fields");
         } else {
@@ -34,9 +34,9 @@ const Register = () => {
         }
     };
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
+    // const handleFileChange = (e) => {
+    //     setFile(e.target.files[0]);
+    // };
 
     const handleSignIn = async () => {
         try {
@@ -51,10 +51,10 @@ const Register = () => {
             const user = response.user;
 
             if (user) {
-                // * Upload Image
-                const storageRef = ref(storage, `profile_images/${user.uid}`);
-                await uploadBytes(storageRef, file);
-                const photoURL = await getDownloadURL(storageRef);
+                // // * Upload Image
+                // const storageRef = ref(storage, `profile_images/${user.uid}`);
+                // await uploadBytes(storageRef, file);
+                // const photoURL = await getDownloadURL(storageRef);
 
                 await setDoc(
                     doc(db, "users", user.uid),
@@ -62,7 +62,6 @@ const Register = () => {
                         username: username,
                         email: email,
                         tag: tag,
-                        photoURL: photoURL,
                     },
                     { merge: true }
                 );
@@ -73,7 +72,7 @@ const Register = () => {
                 setPassword("");
                 setUsername("");
                 setTag("");
-                setFile(null);
+                // setFile(null);
                 route.push("/");
             }
         } catch (error) {
@@ -235,13 +234,13 @@ const Register = () => {
                                 </div>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <input
                                     type="file"
                                     accept="image/*"
                                     onChange={handleFileChange}
                                 />
-                            </div>
+                            </div> */}
 
                             <div className="!mt-8">
                                 <button

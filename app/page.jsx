@@ -21,6 +21,8 @@ const Home = () => {
                 if (response.ok) {
                     const userData = await response.json();
                     setUserSession(userData);
+                } else {
+                    console.log("Failed to fetch user data on the client side");
                 }
             }
         };
