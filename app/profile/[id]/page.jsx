@@ -35,7 +35,8 @@ const Profile = () => {
                     <div className="flex flex-col items-center p-5 h-max-[600px] shadow-md rounded-md">
                         <img
                             src={userData.photoURL}
-                            className="rounded-full w-28 h-28 mt-2 object-cover"
+                            className="rounded-full flex w-28 h-28"
+                            alt="Profile Image"
                         />
 
                         <p className="text-2xl font-bold mt-3">
@@ -87,7 +88,11 @@ const Profile = () => {
                         </p>
                         <div className="flex flex-col gap-4 mt-4">
                             <div className="w-full flex border-solid border-[2px] gap-3 rounded-lg p-2">
-                                <Image height={200} src={CourseImage} />
+                                <Image
+                                    alt="course-image"
+                                    height={200}
+                                    src={CourseImage}
+                                />
                                 <div>
                                     <p className="text-[17px] font-semibold">
                                         Advanced C# Crash Course in 24 Hours
@@ -104,7 +109,11 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className="w-full flex border-solid border-[2px] gap-3 rounded-lg p-2">
-                                <Image height={200} src={CourseImage} />
+                                <Image
+                                    alt="course-image"
+                                    height={200}
+                                    src={CourseImage}
+                                />
                                 <div>
                                     <p className="text-[17px] font-semibold">
                                         Advanced C# Crash Course in 24 Hours
@@ -121,7 +130,11 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className="w-full flex border-solid border-[2px] gap-3 rounded-lg p-2">
-                                <Image height={200} src={CourseImage} />
+                                <Image
+                                    alt="course-image"
+                                    height={200}
+                                    src={CourseImage}
+                                />
                                 <div>
                                     <p className="text-[17px] font-semibold">
                                         Advanced C# Crash Course in 24 Hours

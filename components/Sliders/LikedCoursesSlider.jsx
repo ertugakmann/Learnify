@@ -67,7 +67,7 @@ const LikedCoursesSlider = () => {
             >
                 {likedCoursesData.map((course) => (
                     <SwiperSlide key={course.id}>
-                        <LikedSliderCard course={course} />
+                        <LikedSliderCard key={course.id} course={course} />
                     </SwiperSlide>
                 ))}
             </Swiper>

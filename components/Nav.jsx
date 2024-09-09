@@ -20,11 +20,25 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 // * Firebase Auth
 
 import { auth } from "@lib/firebase";
+import getCurrentUser from "@utils/getCurrentUser";
 
 const Nav = () => {
     const [inputValue, setInputValue] = useState("");
     const { userSession, isLogged, logout } = useUserStore();
+    const [currentUser, setCurrentUser] = useState(null);
+    // * Get Current User Data for Uid
 
+    useEffect(() => {
+        const fetchUserData = async () => {
+            // * Get the current user with uid from authentification.
+            const user = await getCurrentUser();
+
+            setCurrentUser(user);
+            console.log("currentUser", currentUser);
+        };
+
+        fetchUserData();
+    });
     // const [userSession, setUserSession] = useState(null);
     // const [isLogged, setIsLogged] = useState(false);
 
@@ -63,7 +77,7 @@ const Nav = () => {
 
     return (
         <nav className="flex justify-between w-full pt-3 items-center">
-            <Link href="/" className="flex items-center ">
+            <Link href="/" className="flex items-center">
                 {/* TODO: Check that logo again to add a new circle on to the background. */}
                 <Image
                     alt="logo"
@@ -123,7 +137,13 @@ const Nav = () => {
                             />
                         </Link>
                         {/* Desktop Navigation */}
-                        <Link href="/profile">
+                        <Link
+                            href={
+                                currentUser
+                                    ? `/profile/${currentUser.uid}`
+                                    : "#"
+                            }
+                        >
                             <img
                                 src={userSession?.photoURL || Avatar}
                                 className="rounded-full md:flex hidden w-14 h-14 object-cover"
