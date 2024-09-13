@@ -34,7 +34,6 @@ const Nav = () => {
             const user = await getCurrentUser();
 
             setCurrentUser(user);
-            console.log("currentUser", currentUser);
         };
 
         fetchUserData();

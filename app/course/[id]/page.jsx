@@ -58,7 +58,7 @@ const CourseOverview = () => {
 
         fetchCourse();
     }, []);
-
+    console.log(course);
     return (
         <div className="w-full">
             {course ? (
@@ -80,10 +80,10 @@ const CourseOverview = () => {
                                 </div>
                             </div>
                             <p className="text-md text-gray-600 mt-2">
-                                <Link href={"/dynamic-profile"}>
+                                <Link href={`/profile/${course.creatorID}`}>
                                     Course by {course.creator}
                                 </Link>
-                            </p>{" "}
+                            </p>
                         </div>
                         <div>
                             <div className="relative inline-block">
